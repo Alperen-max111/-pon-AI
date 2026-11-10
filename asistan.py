@@ -17,7 +17,7 @@ with st.sidebar:
 st.title("👑 İSİM = ABLAM")
 st.write("Karşınızda en kral abla asistanı! Ona dilediğinizi sorabilirsiniz.")
 
-# Groq İstemci Bağlantısı
+# Groq İstemci Bağlantısı (Hatasız Model ile)
 client = Groq(api_key=st.secrets["GROQ_API_KEY"])
 
 if "messages" not in st.session_state:
@@ -34,7 +34,7 @@ if prompt := st.chat_input("Ablana bir şeyler yaz..."):
 
     with st.chat_message("assistant"):
         response = client.chat.completions.create(
-            model="llama-3.3-70b-versatile",
+            model="llama-3.1-8b-instant",
             messages=[
                 {"role": m["role"], "content": m["content"]}
                 for m in st.session_state.messages
